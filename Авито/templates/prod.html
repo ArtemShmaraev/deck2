@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="product">
+    <br>
+    <div class="wordbreak" align="center" ><h2>{{ product.product }}</h2></div>
+    <br>
+    <div align="center">
+        <img class="prod" align="center" src="{{ url_for('static', filename=product.img) }}"
+             alt="здесь должна была быть картинка, но не нашлась" width="50%">
+        {% if current_user.is_authenticated %}
+        {% if current_user.id == product.leader or current_user.id == 1 %}
+            <a class="nav-link" href="/add_photo/{{  product.id }}"><h5>Изменить фото</h5></a>
+        {% endif %}
+        {% endif %}
+    </div>
+    <br>
+    <div align="center">
+        <h3>Цена: {{ product.price }} руб.</h3>
+    </div>
+    <div align="center">
+        <br>
+        <h2>Описание</h2>
+    <br>
+        <div align="center" class="prod_opisanie">
+            <br>
+            <div align="left">
+                <p>{{ product.opisanie }}</p>
+            </div>
+            <br>
+        </div>
+
+        <table>
+            <tr class="my_row">
+                <td class="title">ID:</td>
+                <td class="ordinary">{{ product.id }}</td>
+            </tr>
+            <tr class="my_row">
+                <td class="title">Продавец:</td>
+                <td class="ordinary"><a href="/user/{{  product.leader }}">{{ product.user.surname }} {{
+                    product.user.name }}</a></td>
+            </tr>
+            <tr class="my_row">
+                <td class="title">Состояние:</td>
+                {% if product.is_finished %}
+                <td class="ordinaryes">Продано</td>
+                {% else %}
+                <td class="ordinary">Продаётся</td>
+                {% endif %}
+            </tr>
+            <tr class="my_row">
+                <td class="title">На Юле с:</td>
+                <td class="ordinary">{{ product.start_date }}</td>
+            </tr>
+        </table>
+        <br>
+        {% if current_user.is_authenticated %}
+        <a class="btn btn-success btn-lg" href="/chat/{{ product.leader }}">Написать продавцу</a>
+        {% endif %}
+
+    </div>
+    <br>
+</div>
+{% endblock %}

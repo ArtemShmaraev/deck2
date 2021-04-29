@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br><br>
+<h1>{{ title }}</h1>
+
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    {% if color == "success" %}
+    <p>{{ form.is_finished() }} {{ form.is_finished.label }}</p>
+    <p>{{ form.submit(type="submit", class="btn btn-success") }}</p>
+    {% else %}
+    <p>{{ form.is_finished() }} {{ form.is_finished.label }}</p>
+    <p>{{ form.submit(type="submit", class="btn btn-danger") }}</p>
+    {{message}}
+    {% endif %}
+</form>
+{% endblock %}

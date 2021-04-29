@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="wid">
+<div class="users">
+    {% for s in users %}
+
+    <div class="container parker">
+        <a href="/chat/{{ s[0].id }}">
+            <img class="imgs" src="{{ url_for('static', filename=s[0].img) }}" alt="Avatar"></a>
+        <p>{{ s[0].surname }} {{ s[0].name }}</p>
+        <a href="/del_chat/{{ s[1] }}">
+            <span class="time-right">Удалить чат</span></a>
+
+    </div>
+
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <br><br>
+    <meta charset="UTF-8">
+    <div class="user">
+        <br>
+        <h2 align="center">Доска объявлений</h2>
+        <br>
+        <div class="prod">
+            {% for product in products %}
+
+                <br>
+                <div class="row" align="center">
+                    <div class="col">
+                        <div class="obert"><br>
+                            <a href="/product/{{ product[0].id }}">
+                                <img class="prod" align="center" src="{{ url_for('static', filename=product[0].img) }}"
+                                     alt="здесь должна была быть картинка, но не нашлась" height="200"
+                                     width="200"></a><br>
+                            <strong><h5>
+                                {{ product[0].product.capitalize()[:17] }}<br>
+                                {{ product[0].price }} руб.</h5></strong>
+                        </div>
+                    </div>
+                    <div class="col">
+
+                        {% if product[1] != 0 %}
+                            <div class="obert"><br>
+                                <a href="/product/{{ product[1].id }}">
+                                    <img class="prod" align="center"
+                                         src="{{ url_for('static', filename=product[1].img) }}"
+                                         alt="здесь должна была быть картинка, но не нашлась" height="200" width="200"></a>
+                                <br>
+                                <strong><h5>
+                                    {{ product[1].product.capitalize()[:17] }}<br>
+                                    {{ product[1].price }} руб.</h5></strong></div>
+                        {% endif %}
+
+                    </div>
+                    <div class="col">
+
+                        {% if product[2] != 0 %}
+                            <div class="obert"><br>
+                                <a href="/product/{{ product[2].id }}">
+                                    <img class="prod" align="center"
+                                         src="{{ url_for('static', filename=product[2].img) }}"
+                                         alt="здесь должна была быть картинка, но не нашлась" height="200" width="200"></a>
+                                <br>
+                                <strong><h5>
+                                    {{ product[2].product.capitalize()[:17] }}<br>
+                                    {{ product[2].price }} руб.</h5></strong></div>
+                        {% endif %}
+
+                    </div>
+                    <div class="col">
+
+                        {% if product[3] != 0 %}
+                            <div class="obert"><br>
+                            <a href="/product/{{ product[3].id }}">
+                                <img class="prod" align="center"
+                                     src="{{ url_for('static', filename=product[3].img) }}"
+                                     alt="здесь должна была быть картинка, но не нашлась" height="200" width="200"></a>
+                            <br>
+                            <strong><h5>
+                                {{ product[3].product.capitalize()[:17] }}<br>
+                                {{ product[3].price }} руб.</h5></strong></div>
+                        {% endif %}
+
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+        <br>
+    </div>
+{% endblock %}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <title>{{ title }}</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2f2e33; height: 70px">
+        <div class="container">
+            <a href="/"><img class="d-inline-block align-top"
+                             src="{{ url_for('static', filename='img/site/icon1.png') }}" height="50" alt=""></a>
+            <a class="navbar-brand" href="#"></a>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    {% if current_user.is_authenticated %}
+                        {% set a = "/user/" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/chats"><h6>Сообщения</h6></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ a }}{{ current_user.id }}"><h6>Мой профиль</h6></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/add_product"><h6>Добавить объявление</h6></a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <br>
+                {% if current_user.is_authenticated %}
+                    <p>
+                        <a class="btn btn-secondary" href="/logout">Выход</a>
+                    </p>
+                {% else %}
+                    <p>
+                        <a class="btn btn-success" href="/register">Регистрация</a>
+                        <a class="btn btn-primary" href="/login">Вход</a>
+                    </p>{% endif %}
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="wrapper">
+    <div class="content">
+        <!-- Begin page content -->
+        <main role="main" class="container">
+            {% block content %}{% endblock %}
+        </main>
+
+    </div>
+    <footer class="py-3">
+        <div class="copy-bottom-txt text-center py-3">
+            <p>
+                © 2021 Доска объявлений. All Rights Reserved | Design by Яндекс Лицей</a>
+            </p>
+        </div>
+        <div class="social-icons mt-lg-3 mt-2 text-center">
+            <ul>
+                <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                <li><a href="#"><span class="fa fa-rss"></span></a></li>
+            </ul>
+        </div>
+
+    </footer>
+    <!-- CDN подключение иконок fontawesome -->
+    <script src="https://use.fontawesome.com/df966d76e1.js"></script>
+</div>
+</body>
+</html>

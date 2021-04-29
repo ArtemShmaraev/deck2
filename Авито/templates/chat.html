@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script type="text/javascript">
+        function change() {
+            var block = document.getElementById("block");
+            block.scrollTop = block.scrollHeight;
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/chat.css"/>
+    <title>{{title}}</title>
+
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2f2e33; height: 70px">
+        <div class="container s">
+            <a href="/"><img
+                    src="{{ url_for('static', filename='img/site/icon1.png') }}" height="50" alt=""></a>
+            <a class="navbar-brand" href="#"></a>
+            <div class="collapse navbar-collapse" id="navbarText">
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/chats"><h5>Сообщения</h5></a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    {% set a = "/user/" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ a }}{{current_user.id }}"><h5>Мой профиль</h5></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/add_product"><h5>Добавить объявление</h5></a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <br>
+                {% if current_user.is_authenticated %}
+                <p>
+                    <a class="btn btn-secondary" href="/logout">Выход</a>
+                </p>
+                {% else %}
+                <p>
+                    <a class="btn btn-success" href="/register">Регистрация</a>
+                    <a class="btn btn-primary" href="/login">Вход</a>
+                </p>{% endif %}
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Begin page content -->
+<main role="main" class="container">
+    <br>
+    <div>
+        <div class="wid">
+
+                <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2f2e33;">
+                    <div class="container s">
+                        <a href="/user//{{ user.id }}"><img class="chats"
+                                                            src="{{ url_for('static', filename=user.img) }}" height="50"
+                                                            width="50" alt=""></a>
+                        <a class="navbar-brand" href="/user//{{ user.id }}"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/user//{{ user.id }}"><h5>{{ user.surname }} {{ user.name
+                                        }}</h5></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+
+            <div class="user" id="block">
+
+                {% for s in sms %}
+                {% if s[0] == "1" %}
+
+                <div class="container darker">
+                    <a href="/user/{{ current_user.id }}">
+                        <img class="imgs_right" src="{{ url_for('static', filename=current_user.img) }}"
+                             alt="Avatar"></a>
+                    <p>{{ s[1] }}</p>
+                    <span class="time-left">{{ s[2] }}</span>
+                </div>
+                {% else %}
+                <div class="container parker">
+                    <a href="/user/{{ user.id }}">
+                        <img class="imgs" src="{{ url_for('static', filename=user.img) }}" alt="Avatar"></a>
+                    <p>{{ s[1] }}</p>
+                    <span class="time-right">{{ s[2] }}</span>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="sms">
+                <form action="" method="post">
+                    {{ form.hidden_tag() }}
+                    <p>
+                        {{ form.text(class="form-control") }}
+                        {% for error in form.text.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                    </p>
+                    <p>{{ form.submit(type="submit", class="btn btn-secondary btn-block") }}</p>
+                    <div>{{ message }}</div>
+                    <script>change()</script>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+</main>
+</body>
+</html>

@@ -1,0 +1,91 @@
+.parker {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px auto;
+    width: 80%;
+    float: left;
+    hyphens: auto;
+    word-break:break-all;
+}
+
+/* Darker chat container */
+.darker {
+    float: right;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px auto;
+    border-color: #ccc;
+    background-color: #ddd;
+    width: 80%;
+    hyphens: auto;
+    border: 2px solid #f1f1f1;
+    word-break:break-all;
+}
+.s{
+    height: 54px;
+}
+
+/* Darker chat container */
+
+/* Clear floats */
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Style images */
+img.imgs{
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* Style the right image */
+img.imgs_right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+/* Style time text */
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+    float: left;
+    color: #999;
+}
+
+div.user {
+    background: #CCCCFF;
+    width: 100%;
+    height: 640px;
+    overflow: auto;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+img.chats{
+    background: #f1f1f1;
+    border-radius: 50%;
+}
+
+div.sms {
+    padding: 20px;
+    background: #2f2e33;
+}
+div.wid{
+    width: 80%;
+    margin:0 auto;
+}
