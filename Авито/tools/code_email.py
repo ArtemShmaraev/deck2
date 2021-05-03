@@ -5,7 +5,7 @@ import email.message
 def send_msg(emai, code):
     msg = email.message.Message()
     msg['Subject'] = 'Код подтверждения'
-    password = "321890artem"
+    password = "awsedr123321"
     msg['From'] = "cinema4512@gmail.com"
     msg['To'] = emai
     msg.add_header('Content-Type', 'text/html')
